@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/home";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Login from "./screens/login";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,19 +25,23 @@ const theme = extendTheme({
   },
 });
 
+export const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
       <SafeAreaView></SafeAreaView>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            options={{ headerShown: false }}
-            name="Home"
-            component={Login}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="Home"
+              component={Login}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </QueryClientProvider>
     </NativeBaseProvider>
   );
 }
