@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from "native-base";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useCurrentUser } from "../../components/AuthContext";
 import { loginUser } from "./helper/api";
@@ -35,7 +35,7 @@ function Login() {
     onSuccess: (e) => {
       login(e.data);
       // @ts-expect-error
-      navigate.navigate("home");
+      navigate.navigate("Home");
     },
     onError: (e) => {
       if (e instanceof AxiosError) {
@@ -63,7 +63,6 @@ function Login() {
         newValidationData[key as keyof typeof newValidationData].length === 0
       );
     }, true);
-    console.log({ newValidationData });
     if (valid) {
       generalError && setGeneralError("");
       setValidationData({
