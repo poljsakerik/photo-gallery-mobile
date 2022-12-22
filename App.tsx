@@ -5,6 +5,7 @@ import HomeScreen from "./screens/home";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Login from "./screens/login";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Register from "./screens/register";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +21,6 @@ const theme = extendTheme({
   Button: {
     baseStyle: {
       _text: { fontWeight: "bold" },
-      rounded: "full",
     },
   },
 });
@@ -39,6 +39,7 @@ export default function App() {
               name="Login"
               component={Login}
             />
+            <Stack.Screen name="Register" component={Register} />
             <Stack.Screen
               options={{ headerShown: false }}
               name="Home"

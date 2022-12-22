@@ -13,29 +13,33 @@ import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { useCurrentUser } from "../../components/AuthContext";
 import { Routes } from "../../helper/globalTypes";
-import { loginUser } from "./helper/api";
-import { LoginParams, validateLogin } from "./helper/helper";
+import { RegisterParams, registerUser } from "./helper/api";
+import { validateRegisterInput } from "./helper/helper";
 
-function Login() {
+function Register() {
   const { login } = useCurrentUser();
   const [userData, setUserData] = useState({
     username: "",
     password: "",
+    password2: "",
+    email: "",
   });
 
   const [validationData, setValidationData] = useState({
     username: [] as string[],
     password: [] as string[],
+    password2: [] as string[],
+    email: [] as string[],
   });
   const [generalError, setGeneralError] = useState("");
 
   const navigate = useNavigation<Routes>();
 
   const { mutate } = useMutation({
-    mutationFn: loginUser,
+    mutationFn: registerUser,
     onSuccess: (e) => {
       login(e.data);
-      navigate.navigate("Home");
+      navigate.navigate("Login");
     },
     onError: (e) => {
       if (e instanceof AxiosError) {
@@ -47,7 +51,7 @@ function Login() {
     },
   });
 
-  function onChangeUserData(key: keyof LoginParams) {
+  function onChangeUserData(key: keyof RegisterParams) {
     return (e: string) => {
       const newData = { ...userData };
       newData[key] = e;
@@ -56,7 +60,7 @@ function Login() {
   }
 
   function onSubmit() {
-    const newValidationData = validateLogin(userData);
+    const newValidationData = validateRegisterInput(userData);
     const valid = Object.keys(newValidationData).reduce((acc, key) => {
       return (
         acc &&
@@ -68,6 +72,8 @@ function Login() {
       setValidationData({
         username: [] as string[],
         password: [] as string[],
+        password2: [] as string[],
+        email: [] as string[],
       });
       mutate(userData);
     } else {
@@ -83,9 +89,26 @@ function Login() {
       alignItems={"center"}
     >
       <Heading color={"white"} size={"2xl"}>
-        Hi, please login
+        Hi, please register
       </Heading>
       {generalError && <Text color={"error.500"}>{generalError}</Text>}
+      <FormControl
+        isInvalid={validationData.email.length > 0}
+        my={"4"}
+        isRequired
+      >
+        <Stack>
+          <FormControl.Label>Email</FormControl.Label>
+          <Input
+            onChangeText={onChangeUserData("email")}
+            color={"white"}
+            placeholder="Username"
+          />
+          <FormControl.ErrorMessage>
+            {validationData.email[0]}
+          </FormControl.ErrorMessage>
+        </Stack>
+      </FormControl>
       <FormControl
         isInvalid={validationData.username.length > 0}
         my={"4"}
@@ -124,21 +147,41 @@ function Login() {
           </FormControl.HelperText>
         </Stack>
       </FormControl>
+      <FormControl
+        isInvalid={validationData.password2.length > 0}
+        isRequired
+        my={"4"}
+      >
+        <Stack>
+          <FormControl.Label>Confirm Password</FormControl.Label>
+          <Input
+            onChangeText={onChangeUserData("password2")}
+            color={"white"}
+            type="password"
+            placeholder="Confirm Password"
+          />
+          <FormControl.ErrorMessage>
+            {validationData.password2[0]}
+          </FormControl.ErrorMessage>
+          <FormControl.HelperText>
+            Must be at least 8 characters.
+          </FormControl.HelperText>
+        </Stack>
+      </FormControl>
       <Button onPress={onSubmit} colorScheme={"purple"}>
-        LOGIN
+        REGISTER
       </Button>
       <Button
-        mt={"4"}
         onPress={() => {
-          navigate.navigate("Register");
+          navigate.navigate("Login");
         }}
-        variant="ghost"
         colorScheme={"purple"}
+        variant="ghost"
       >
-        REGISTER
+        Already have an account ?
       </Button>
     </View>
   );
 }
 
-export default Login;
+export default Register;
