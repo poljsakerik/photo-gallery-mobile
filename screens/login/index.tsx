@@ -11,7 +11,7 @@ import {
 } from "native-base";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
-import { useCurrentUser } from "../../components/AuthContext";
+import { useCurrentUser } from "../../components/context/AuthContext";
 import { Routes } from "../../helper/globalTypes";
 import { loginUser } from "./helper/api";
 import { LoginParams, validateLogin } from "./helper/helper";

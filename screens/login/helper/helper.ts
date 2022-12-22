@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from "jwt-decode";
-import { JWTUser } from "../../../components/AuthContext";
+import { JWTUser } from "../../../components/context/AuthContext";
 import { APIToken } from "../../../helper/axios";
 import {
   validateEmptyFields,

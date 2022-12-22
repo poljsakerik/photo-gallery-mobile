@@ -8,11 +8,11 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { APIToken } from "../helper/axios";
+import { APIToken } from "../../helper/axios";
 import {
   removeLoginTokens,
   setLoginTokens,
-} from "../screens/login/helper/helper";
+} from "../../screens/login/helper/helper";
 
 export type JWTUser = {
   exp: number;
