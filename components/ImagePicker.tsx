@@ -1,12 +1,20 @@
 import React from "react";
-import { Button, View } from "react-native";
+import {} from "react-native";
 import * as ImagePickerExpo from "expo-image-picker";
+import { Button, View } from "native-base";
+import { InterfaceViewProps } from "native-base/lib/typescript/components/basic/View/types";
 
-interface IProps {
-  onImageChange: (arg: string) => void;
+interface IProps extends InterfaceViewProps {
+  onImageChange: (arg: ImageFile) => void;
 }
 
-export default function ImagePicker({ onImageChange }: IProps) {
+export type ImageFile = {
+  uri: string;
+  name: "media";
+  type: `image/${string}`;
+};
+
+export default function ImagePicker({ onImageChange, ...rest }: IProps) {
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePickerExpo.launchImageLibraryAsync({
@@ -14,18 +22,21 @@ export default function ImagePicker({ onImageChange }: IProps) {
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
+      base64: true,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      onImageChange(result.uri);
+      onImageChange({
+        uri: result.base64 ?? "",
+        name: "media",
+        type: `image/${result.type}`,
+      });
     }
   };
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
+    <View {...rest}>
+      <Button onPress={pickImage}>Open gallery</Button>
     </View>
   );
 }

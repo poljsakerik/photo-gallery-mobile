@@ -45,7 +45,7 @@ function Cover({ onClick, dropDownItems, title, image, onDelete }: CoverProps) {
         alignItems="center"
         p={"4"}
       >
-        <Heading size={"xl"}>{title}</Heading>
+        <Heading size={"lg"}>{title}</Heading>
         <Menu
           isOpen={menuOpen}
           trigger={CoverTrigger}

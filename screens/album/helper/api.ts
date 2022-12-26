@@ -1,9 +1,10 @@
+import { ImageFile } from "../../../components/ImagePicker";
 import { axiosPrivate } from "../../../helper/axiosPrivate";
 
 export type ImageUploadParams = {
   title: string;
   description: string;
-  image: string;
+  image: ImageFile;
 };
 
 export type ImageEditParams = {

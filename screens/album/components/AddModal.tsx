@@ -2,7 +2,7 @@ import { Button, FormControl, Input, Modal, TextArea, View } from "native-base";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../App";
-import ImagePicker from "../../../components/ImagePicker";
+import ImagePicker, { ImageFile } from "../../../components/ImagePicker";
 import useOpen from "../../../components/useOpen";
 import { addImageToAlbum, ImageUploadParams } from "../helper/api";
 
@@ -14,7 +14,11 @@ function AddModal({ albumId }: IProps) {
   const [newImageData, setNewImageData] = useState<ImageUploadParams>({
     title: "",
     description: "",
-    image: "",
+    image: {
+      name: "media",
+      type: "image/image",
+      uri: "",
+    },
   });
   const { open, onClose, onOpen } = useOpen();
   const { mutate } = useMutation({
@@ -33,7 +37,7 @@ function AddModal({ albumId }: IProps) {
     };
   }
 
-  function onFileInputChange(file: string) {
+  function onFileInputChange(file: ImageFile) {
     const newData = { ...newImageData };
     newData.image = file;
     setNewImageData(newData);
