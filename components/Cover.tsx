@@ -1,5 +1,12 @@
-import { HamburgerIcon, Heading, Menu, Pressable, View } from "native-base";
-import React, { useCallback, useState } from "react";
+import {
+  HamburgerIcon,
+  Heading,
+  Menu,
+  Pressable,
+  Text,
+  View,
+} from "native-base";
+import React, { useState } from "react";
 import AutoHeightImage from "react-native-auto-height-image";
 
 export interface CoverProps {
@@ -12,10 +19,6 @@ export interface CoverProps {
 
 function Cover({ onClick, dropDownItems, title, image, onDelete }: CoverProps) {
   const [menuOpen, setMenuOpen] = useState<boolean | undefined>(undefined);
-
-  const onDropDownItemPress = useCallback(() => {
-    setMenuOpen(false);
-  }, []);
 
   return (
     <View flexDir="column" bg={"white"} borderRadius="lg">
@@ -36,17 +39,23 @@ function Cover({ onClick, dropDownItems, title, image, onDelete }: CoverProps) {
         p={"4"}
       >
         <Heading size={"lg"}>{title}</Heading>
-        <Menu
-          isOpen={menuOpen}
-          trigger={CoverTrigger}
-          onOpen={() => setMenuOpen(true)}
-          onClose={() => {
-            setMenuOpen(false);
-          }}
-        >
-          {onDelete && <Menu.Item onPress={onDelete}>Delete</Menu.Item>}
-          {dropDownItems}
-        </Menu>
+        {(onDelete || dropDownItems) && (
+          <Menu
+            isOpen={menuOpen}
+            trigger={CoverTrigger}
+            onOpen={() => setMenuOpen(true)}
+            onClose={() => {
+              setMenuOpen(false);
+            }}
+          >
+            {onDelete && (
+              <Menu.Item onPress={onDelete}>
+                <Text color={"red.500"}>Delete</Text>
+              </Menu.Item>
+            )}
+            {dropDownItems}
+          </Menu>
+        )}
       </View>
     </View>
   );
@@ -56,7 +65,7 @@ export default Cover;
 
 function CoverTrigger(
   triggerProps: any,
-  state: {
+  _state: {
     open: boolean;
   }
 ) {

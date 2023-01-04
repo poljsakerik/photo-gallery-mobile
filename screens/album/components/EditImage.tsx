@@ -8,6 +8,7 @@ import {
 } from "native-base";
 import React, { useState } from "react";
 import AutoHeightImage from "react-native-auto-height-image";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../App";
 import { editImage, ImageEditParams } from "../helper/api";
@@ -47,14 +48,16 @@ function EditImageModal({ open, image, onClose, albumId }: IProps) {
 
   return (
     <Modal isOpen={open} onClose={onClose}>
+      <SafeAreaView></SafeAreaView>
       <ScrollView
-        p={"4"}
-        justifyItems={"center"}
-        width={"100%"}
-        background={"white"}
-        borderRadius="2xl"
-        justifyContent={"center"}
-        alignItems={"center"}
+        width="100%"
+        contentContainerStyle={{
+          alignItems: "center",
+          padding: 4,
+          width: "100%",
+          backgroundColor: "white",
+          borderRadius: 10,
+        }}
       >
         <Modal.CloseButton />
         <AutoHeightImage
