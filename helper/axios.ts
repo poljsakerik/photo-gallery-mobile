@@ -10,14 +10,16 @@ export type APIToken = {
   refresh: string;
 };
 
+export const URL = "http://127.0.0.1:8000/";
+
 export const axiosPublic = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: URL,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-export const refreshTokenFn = async () => {
+export async function refreshTokenFn() {
   const data = await AsyncStorage.getItem("token");
   if (data) {
     try {
@@ -40,5 +42,7 @@ export const refreshTokenFn = async () => {
     } catch (error) {
       removeLoginTokens();
     }
+  } else {
+    return undefined;
   }
-};
+}

@@ -21,9 +21,11 @@ function Album() {
     return null;
   }
   return (
-    <View flex={1} bg={"gray.800"}>
+    <View p={"5"} flex={1} bg={"gray.800"}>
       <View>
-        <Heading size={"2xl"}>{data?.title}</Heading>
+        <Heading my={"2"} color={"white"} size={"2xl"}>
+          {data?.title}
+        </Heading>
         <AddModal albumId={id} />
       </View>
       {isSuccess && (

@@ -90,7 +90,7 @@ function AddModal({ albumId }: IProps) {
           </FormControl>
         </View>
       </Modal>
-      <Button color="primary" onPress={onOpen}>
+      <Button my={"4"} color="primary" onPress={onOpen}>
         Add Image
       </Button>
     </>
