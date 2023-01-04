@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../App";
-import ImagePicker, { ImageFile } from "../../../components/ImagePicker";
+import ImagePicker from "../../../components/ImagePicker";
 import useOpen from "../../../components/useOpen";
 import { createAlbum } from "../helper/api";
 
 function AddModal() {
   const [title, setTitle] = useState("");
-  const [cover, setCover] = useState<ImageFile | undefined>(undefined);
+  const [cover, setCover] = useState<string | undefined>(undefined);
   const { open, onClose, onOpen } = useOpen();
   const addAlbum = useMutation({
     mutationFn: createAlbum,
@@ -20,7 +20,7 @@ function AddModal() {
   });
 
   function submitData() {
-    addAlbum.mutate({ title, cover: cover?.uri ?? "" });
+    addAlbum.mutate({ title, cover: cover ?? "" });
   }
   return (
     <>

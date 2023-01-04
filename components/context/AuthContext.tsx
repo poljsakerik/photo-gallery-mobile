@@ -31,9 +31,7 @@ type AuthContext = {
 
 const authContext = createContext<AuthContext>({
   setUser: () => {},
-  login: (token) => {
-    console.log(token);
-  },
+  login: (_token) => {},
   logout: () => {},
 });
 

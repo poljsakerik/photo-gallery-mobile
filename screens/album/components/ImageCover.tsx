@@ -20,7 +20,6 @@ function ImageCover({ image, albumId, setEditImage, albumOwnerId }: IProps) {
       queryClient.invalidateQueries(["albumData", albumId]);
     },
   });
-  console.log({ user: user, albumOwnerId });
   return (
     <>
       <Cover
@@ -34,7 +33,6 @@ function ImageCover({ image, albumId, setEditImage, albumOwnerId }: IProps) {
             : undefined
         }
         onClick={() => {
-          console.log("here");
           setEditImage(image);
         }}
       ></Cover>

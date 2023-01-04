@@ -5,14 +5,8 @@ import { Button, View } from "native-base";
 import { InterfaceViewProps } from "native-base/lib/typescript/components/basic/View/types";
 
 interface IProps extends InterfaceViewProps {
-  onImageChange: (arg: ImageFile) => void;
+  onImageChange: (arg: string) => void;
 }
-
-export type ImageFile = {
-  uri: string;
-  name: "media";
-  type: `image/${string}`;
-};
 
 export default function ImagePicker({ onImageChange, ...rest }: IProps) {
   const pickImage = async () => {
@@ -20,20 +14,16 @@ export default function ImagePicker({ onImageChange, ...rest }: IProps) {
     let result = await ImagePickerExpo.launchImageLibraryAsync({
       mediaTypes: ImagePickerExpo.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+      quality: 0.5,
       base64: true,
     });
 
-    if (!result.cancelled) {
-      onImageChange({
-        uri: result.base64 ?? "",
-        name: "media",
-        type: `image/${result.type}`,
-      });
+    if (!result.cancelled && result.base64) {
+      console.log(result);
+      const prefix = `data:image/${result.uri.split(".").pop()};base64,`;
+      onImageChange(prefix + result.base64);
     }
   };
-
   return (
     <View {...rest}>
       <Button onPress={pickImage}>Open gallery</Button>

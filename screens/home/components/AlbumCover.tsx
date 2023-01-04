@@ -23,7 +23,6 @@ function AlbumCover({ id, cover, title, owner }: AlbumCover) {
       queryClient.invalidateQueries(["albums"]);
     },
   });
-  console.log(owner, user?.user_id);
   return (
     <Cover
       image={cover}

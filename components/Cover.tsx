@@ -25,8 +25,6 @@ function Cover({ onClick, dropDownItems, title, image, onDelete }: CoverProps) {
     setMenuOpen(false);
   }, []);
 
-  console.log(onDelete);
-
   return (
     <View flexDir="column" bg={"white"} borderRadius="lg">
       <View onTouchEnd={onClick}>

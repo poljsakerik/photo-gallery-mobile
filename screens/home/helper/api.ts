@@ -6,15 +6,10 @@ export async function fetchAllAlbums(): Promise<Album[]> {
 }
 
 export async function createAlbum(album: { cover: string; title: string }) {
-  const blob = new Blob(["data:image/jpeg;base64," + album.cover], {
-    type: "image/jpeg",
-    lastModified: 100,
-  });
   const formData = new FormData();
-  if (blob) {
-    formData.append("cover", blob);
-  }
+  formData.append("cover", album.cover);
   formData.append("title", album.title);
+  console.log(album);
   return axiosPrivate.post("/album-create/?format=json", formData);
 }
 
