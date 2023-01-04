@@ -32,9 +32,13 @@ function ImageCover({ image, albumId, setEditImage, albumOwnerId }: IProps) {
               }
             : undefined
         }
-        onClick={() => {
-          setEditImage(image);
-        }}
+        onClick={
+          user?.user_id === albumOwnerId
+            ? () => {
+                setEditImage(image);
+              }
+            : undefined
+        }
       ></Cover>
     </>
   );
