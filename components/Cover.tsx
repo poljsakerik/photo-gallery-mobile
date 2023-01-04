@@ -6,8 +6,9 @@ import {
   Text,
   View,
 } from "native-base";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import AutoHeightImage from "react-native-auto-height-image";
+import { Dimensions } from "react-native";
 
 export interface CoverProps {
   onClick?: () => void;
@@ -19,12 +20,15 @@ export interface CoverProps {
 
 function Cover({ onClick, dropDownItems, title, image, onDelete }: CoverProps) {
   const [menuOpen, setMenuOpen] = useState<boolean | undefined>(undefined);
+  const imageWidth = useMemo(() => {
+    return Dimensions.get("window").width * 0.9;
+  }, []);
 
   return (
     <View flexDir="column" bg={"white"} borderRadius="lg">
       <View onTouchEnd={onClick}>
         <AutoHeightImage
-          width={400}
+          width={imageWidth}
           source={{
             uri:
               image ||

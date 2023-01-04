@@ -6,7 +6,8 @@ import {
   ScrollView,
   TextArea,
 } from "native-base";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
+import { Dimensions } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useMutation } from "react-query";
@@ -25,6 +26,10 @@ function EditImageModal({ open, image, onClose, albumId }: IProps) {
     title: image.title ?? "",
     description: image.description ?? "",
   });
+
+  const imageWidth = useMemo(() => {
+    return Dimensions.get("window").width * 0.7;
+  }, []);
 
   const { mutate } = useMutation({
     mutationFn: () => editImage(editImageData, image.id),
@@ -61,7 +66,7 @@ function EditImageModal({ open, image, onClose, albumId }: IProps) {
       >
         <Modal.CloseButton />
         <AutoHeightImage
-          width={300}
+          width={imageWidth}
           source={{ uri: image.image }}
         ></AutoHeightImage>
         <FormControl>
