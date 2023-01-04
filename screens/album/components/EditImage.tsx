@@ -5,9 +5,8 @@ import {
   Modal,
   ScrollView,
   TextArea,
-  View,
 } from "native-base";
-import React, { FormEvent, useState } from "react";
+import React, { useState } from "react";
 import AutoHeightImage from "react-native-auto-height-image";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../App";
@@ -48,7 +47,7 @@ function EditImageModal({ open, image, onClose, albumId }: IProps) {
 
   return (
     <Modal isOpen={open} onClose={onClose}>
-      <View
+      <ScrollView
         p={"4"}
         justifyItems={"center"}
         width={"100%"}
@@ -87,7 +86,7 @@ function EditImageModal({ open, image, onClose, albumId }: IProps) {
             Edit Image
           </Button>
         </FormControl>
-      </View>
+      </ScrollView>
     </Modal>
   );
 }
