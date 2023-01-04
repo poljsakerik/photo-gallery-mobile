@@ -26,6 +26,9 @@ function AlbumCover({ id, cover, title, owner }: AlbumCover) {
   return (
     <Cover
       image={cover}
+      onClick={() => {
+        navigate.navigate("Album", { id: id.toString() });
+      }}
       onDelete={owner === user?.user_id ? () => mutate() : undefined}
       title={title}
     ></Cover>

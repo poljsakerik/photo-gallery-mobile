@@ -1,4 +1,12 @@
-import { Button, FormControl, Input, Modal, TextArea, View } from "native-base";
+import {
+  Button,
+  FormControl,
+  Heading,
+  Input,
+  Modal,
+  TextArea,
+  View,
+} from "native-base";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { queryClient } from "../../../App";
@@ -55,27 +63,31 @@ function AddModal({ albumId }: IProps) {
   return (
     <>
       <Modal isOpen={open} onClose={onClose}>
-        <View>
-          <h3>Add a new Picture to your Album</h3>
-          <FormControl.Label>Upload Image</FormControl.Label>
-          <ImagePicker onImageChange={onFileInputChange}></ImagePicker>
-          <FormControl.Label>Image Title</FormControl.Label>
-          <Input
-            placeholder="title"
-            value={newImageData.title}
-            onChangeText={onChangeFormData("title")}
-          />
-          <FormControl.Label>Image Description</FormControl.Label>
+        <View background={"white"} p="4" borderRadius={"2xl"} width={"100%"}>
+          <Modal.CloseButton />
+          <Heading>Add a new Picture to your Album</Heading>
+          <FormControl>
+            <FormControl.Label>Upload Image</FormControl.Label>
+            <ImagePicker onImageChange={onFileInputChange}></ImagePicker>
+            <FormControl.Label>Image Title</FormControl.Label>
+            <Input
+              placeholder="title"
+              value={newImageData.title}
+              onChangeText={onChangeFormData("title")}
+            />
+            <FormControl.Label>Image Description</FormControl.Label>
 
-          <TextArea
-            autoCompleteType="none"
-            placeholder="description"
-            value={newImageData.description}
-            onChangeText={onChangeFormData("description")}
-          />
-          <Button color="primary" onPress={onSubmit}>
-            Add New Image
-          </Button>
+            <TextArea
+              autoCompleteType="none"
+              placeholder="description"
+              value={newImageData.description}
+              onChangeText={onChangeFormData("description")}
+              mb="4"
+            />
+            <Button color="primary" onPress={onSubmit}>
+              Add New Image
+            </Button>
+          </FormControl>
         </View>
       </Modal>
       <Button color="primary" onPress={onOpen}>

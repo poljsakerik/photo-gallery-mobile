@@ -26,22 +26,32 @@ function AddModal() {
     <>
       <Modal size={"full"} isOpen={open} onClose={onClose}>
         <SafeAreaView></SafeAreaView>
-        <Modal.Body bg={"white"}>
-          <View flexDir={"row"} justifyContent="space-between">
-            <Heading>Add a new Album</Heading>
-            <Modal.CloseButton></Modal.CloseButton>
-          </View>
-          <FormControl.Label mt={"3"}>Album name</FormControl.Label>
-          <Input
-            mt={"3"}
-            value={title}
-            onChangeText={(value) => setTitle(value)}
-          />
-          <ImagePicker mt={"3"} onImageChange={setCover}></ImagePicker>
-          <Button mt={"3"} color="primary" onPress={submitData}>
-            Add New Album
-          </Button>
-        </Modal.Body>
+        <View
+          p={"4"}
+          justifyItems={"center"}
+          width={"100%"}
+          background={"white"}
+          borderRadius="2xl"
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <FormControl>
+            <View flexDir={"row"} justifyContent="space-between">
+              <Heading>Add a new Album</Heading>
+              <Modal.CloseButton></Modal.CloseButton>
+            </View>
+            <FormControl.Label mt={"3"}>Album name</FormControl.Label>
+            <Input
+              mt={"3"}
+              value={title}
+              onChangeText={(value) => setTitle(value)}
+            />
+            <ImagePicker mt={"3"} onImageChange={setCover}></ImagePicker>
+            <Button mt={"3"} color="primary" onPress={submitData}>
+              Add New Album
+            </Button>
+          </FormControl>
+        </View>
       </Modal>
       <Button color="primary" onPress={onOpen}>
         Add

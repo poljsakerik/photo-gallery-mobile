@@ -7,6 +7,7 @@ import Login from "./screens/login";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Register from "./screens/register";
 import AuthContextProvider from "./components/context/AuthContext";
+import Album from "./screens/album";
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,7 @@ export default function App() {
                 name="Home"
                 component={HomeScreen}
               />
+              <Stack.Screen name="Album" component={Album} />
             </Stack.Navigator>
           </NavigationContainer>
         </QueryClientProvider>

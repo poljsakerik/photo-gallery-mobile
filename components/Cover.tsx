@@ -1,12 +1,4 @@
-import {
-  HamburgerIcon,
-  Heading,
-  Image,
-  Menu,
-  Pressable,
-  Text,
-  View,
-} from "native-base";
+import { HamburgerIcon, Heading, Menu, Pressable, View } from "native-base";
 import React, { useCallback, useState } from "react";
 import AutoHeightImage from "react-native-auto-height-image";
 
