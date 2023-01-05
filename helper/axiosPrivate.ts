@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import { APIToken, refreshTokenFn } from "./axios";
+import getEnvVars from "./consts";
 
-import { APIToken, refreshTokenFn, URL } from "./axios";
-
-axios.defaults.baseURL = URL;
+axios.defaults.baseURL = getEnvVars()?.apiUrl;
 
 axios.interceptors.request.use(
   async (config) => {

@@ -14,7 +14,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -22,14 +24,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.erce312.photogallerymobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "infoPlist": {
       "NSAppTransportSecurity": false
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e2c62eee-874a-4ac6-a220-c942a3e202c6"
+      }
     }
   }
 }

@@ -4,16 +4,15 @@ import {
   removeLoginTokens,
   setLoginTokens,
 } from "../screens/login/helper/helper";
+import getEnvVars from "./consts";
 
 export type APIToken = {
   access: string;
   refresh: string;
 };
 
-export const URL = "http://127.0.0.1:8000/";
-
 export const axiosPublic = axios.create({
-  baseURL: URL,
+  baseURL: getEnvVars()?.apiUrl,
   headers: {
     "Content-Type": "application/json",
   },

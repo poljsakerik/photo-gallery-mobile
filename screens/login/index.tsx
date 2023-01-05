@@ -35,7 +35,6 @@ function Login() {
     mutationFn: loginUser,
     onSuccess: (e) => {
       login(e.data);
-      navigate.navigate("Home");
     },
     onError: (e) => {
       if (e instanceof AxiosError) {
