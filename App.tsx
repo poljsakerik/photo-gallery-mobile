@@ -1,5 +1,4 @@
 import { NativeBaseProvider, extendTheme } from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { QueryClient, QueryClientProvider } from "react-query";
 import AuthContextProvider from "./components/context/AuthContext";
 import Navigation from "./components/Navigation";
