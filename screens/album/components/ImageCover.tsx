@@ -7,7 +7,7 @@ import { removeImageFromAlbum } from "../helper/api";
 
 interface IProps {
   image: Image;
-  albumId: number;
+  albumId: string;
   albumOwnerId: number;
   setEditImage: Dispatch<SetStateAction<Image | null | undefined>>;
 }

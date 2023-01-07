@@ -5,9 +5,10 @@ import {
   FormControl,
   Heading,
   Input,
+  ScrollView,
   Stack,
   Text,
-  View,
+  useTheme,
 } from "native-base";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
@@ -18,6 +19,7 @@ import { validateRegisterInput } from "./helper/helper";
 
 function Register() {
   const { login } = useCurrentUser();
+  const theme = useTheme();
   const [userData, setUserData] = useState({
     username: "",
     password: "",
@@ -81,12 +83,13 @@ function Register() {
     }
   }
   return (
-    <View
-      p={"10"}
-      bg={"gray.800"}
-      flex={1}
-      justifyContent={"center"}
-      alignItems={"center"}
+    <ScrollView
+      contentContainerStyle={{
+        alignItems: "center",
+        padding: 30,
+        width: "100%",
+        backgroundColor: theme.colors.gray[800],
+      }}
     >
       <Heading color={"white"} size={"2xl"}>
         Hi, please register
@@ -180,7 +183,7 @@ function Register() {
       >
         Already have an account ?
       </Button>
-    </View>
+    </ScrollView>
   );
 }
 

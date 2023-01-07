@@ -36,7 +36,7 @@ function Album() {
               albumOwnerId={data.owner}
               setEditImage={setEditImage}
               image={item}
-              albumId={+id}
+              albumId={id}
             ></ImageCover>
           )}
           ItemSeparatorComponent={ItemSeperator}
